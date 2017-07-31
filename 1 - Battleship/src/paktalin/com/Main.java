@@ -126,12 +126,10 @@ public class Main {
                 System.out.print("\n " + y + " |");
                 for (int x = 0; x < sea[0].length; x++){
                     switch (sea[x][y]){
-                        case 0: System.out.print(" ");
+                        case 0, 2: System.out.print(" ");
                             break;
                         case 1: System.out.print("@");
                             break;
-                        case 2: System.out.print(" ");
-                        break;
                         case 3: System.out.print("X");
                             break;
                         case 4: System.out.print("-");
