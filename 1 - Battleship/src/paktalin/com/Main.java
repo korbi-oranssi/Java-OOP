@@ -13,9 +13,7 @@ public class Main {
     private static boolean gameOver;
 
     public static void main(String[] args)  {
-        //header
-        System.out.print("**** Welcome to the Battle Ships game ****");
-        System.out.print("\n\nRight now, the sea is empty.");
+        System.out.print("**** Welcome to the Battle Ships game ****\n\nRight now, the sea is empty.");
 
         drawMap();
         playerShips();
@@ -57,29 +55,26 @@ public class Main {
         System.out.print("Guess the Y coordinate: ");
         y = input.nextInt();
 
-        switch (sea[x][y]){
-            case 0:
-                System.out.print("\nOops! You missed!");
-                sea[x][y] = 4;
-                break;
-            case 1:
-                System.out.print("\nIt's your ship's position! Try again!");
-                playerGuess();
-                break;
-            case 2:
-                System.out.print("\nGreat! You sank the ship! Your turn again.");
-                computerShips --;
-                sea[x][y] = 3;
-                playerGuess();
-            break;
-            case 3:
-                System.out.print("\nIt's already sunk, chill! Try again.");
-                playerGuess();
-                break;
-            case 4:
-                System.out.print("\nIt's empty. Try again.");
-                playerGuess();
-                break;
+        if(sea[x][y] == 0){
+            System.out.print("\nOops! You missed!");
+            sea[x][y] = 4;
+        }
+        if(sea[x][y] == 1){
+            System.out.print("\nIt's your ship's position! Try again!");
+            playerGuess();
+        }
+        if(sea[x][y] == 2){
+            System.out.print("\nGreat! You sank the ship! Your turn again.");
+            computerShips --;
+            sea[x][y] = 3;
+        }
+        if(sea[x][y] == 3){
+            System.out.print("\nIt's already sunk, chill! Try again.");
+            playerGuess();
+        }
+        if(sea[x][y] == 4){
+            System.out.print("\nIt's empty. Try again.");
+            playerGuess();
         }
     }
 
@@ -120,27 +115,27 @@ public class Main {
 
             //top
             System.out.print("\n\n    ");
-            for (int i = 0; i < SEA_SIZE; i++) System.out.print(i);
+            for (int i = 0; i < SEA_SIZE; i++)
+                System.out.print(i);
             //body
             for (int y = 0; y < sea.length; y++){
                 System.out.print("\n " + y + " |");
-                for (int x = 0; x < sea[0].length; x++){
-                    switch (sea[x][y]){
-                        case 0, 2: System.out.print(" ");
-                            break;
-                        case 1: System.out.print("@");
-                            break;
-                        case 3: System.out.print("X");
-                            break;
-                        case 4: System.out.print("-");
-                            break;
-                    }
+                for (int x = 0; x < sea[0].length; x++) {
+                    if(sea[x][y] == 0 || sea[x][y] == 2)
+                        System.out.print(" ");
+                    if(sea[x][y] == 1)
+                        System.out.print("@");
+                    if(sea[x][y] == 3)
+                        System.out.print("X");
+                    if(sea[x][y] == 4)
+                        System.out.print("-");
                 }
                 System.out.print(" ");
                 System.out.print("| " + y);
             }
             //footer
             System.out.print("\n    ");
-            for (int i = 0; i < SEA_SIZE; i++) System.out.print(i);
+            for (int i = 0; i < SEA_SIZE; i++)
+                System.out.print(i);
     }
 }
